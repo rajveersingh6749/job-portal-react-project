@@ -116,9 +116,12 @@
   }
 
   .gradient-title {
-    @apply gradient text-transparent bg-clip-text;
+    @apply bg-gradient-to-br from-gray-500 via-gray-200 to-white text-transparent bg-clip-text;
   }
 }
+
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -8,7 +8,7 @@ import {
   SignInButton, 
   UserButton
 } from '@clerk/clerk-react';
-import { PenBox } from 'lucide-react';
+import { BriefcaseBusiness, Heart, PenBox } from 'lucide-react';
 
 
 const Header = () => {
@@ -58,7 +58,22 @@ const Header = () => {
                   avatarBox: "w-10 h-10",
                 },
               }}
-            ></UserButton>
+            >
+
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="My Jobs"
+                  labelIcon={<BriefcaseBusiness size={15} />}
+                  href="/my-jobs"
+                />
+                <UserButton.Link
+                  label="Saved Jobs"
+                  labelIcon={<Heart size={15} />}
+                  href="/saved-jobs"
+                />
+                <UserButton.Action label="manageAccount" />
+              </UserButton.MenuItems>
+            </UserButton>
           </SignedIn>
         </div>
       </nav>
