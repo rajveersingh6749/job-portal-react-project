@@ -1,14 +1,21 @@
 import { createClient } from "@supabase/supabase-js";
 
 export const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-const supabaseClient = async (supabaseAccessToken) => {
-  const supabase = createClient(supabaseUrl, supabaseKey, {
-    global: { headers: { Authorization: `Bearer ${supabaseAccessToken}` } },
+/**
+ * Create a Supabase client that automatically uses a Clerk-issued JWT
+ * if provided, otherwise falls back to the anon key for public reads.
+ */
+const supabaseClient = (supabaseAccessToken) => {
+  const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    global: {
+      headers: {
+        ...(supabaseAccessToken && { Authorization: `Bearer ${supabaseAccessToken}` }),
+      },
+    },
   });
-  // set Supabase JWT on the client object,
-  // so it is sent up with all Supabase requests
+
   return supabase;
 };
 

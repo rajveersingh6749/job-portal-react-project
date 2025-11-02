@@ -35,8 +35,8 @@ const Header = () => {
   return (
     <>
       <nav className='py-4 flex justify-between items-center'>
-        <Link>
-        <img src="/logo.png" className='h-20' />
+        <Link to="/">
+          <img src="/logo.png" className='h-20' alt="Job Portal logo" />
         </Link>
 
 
